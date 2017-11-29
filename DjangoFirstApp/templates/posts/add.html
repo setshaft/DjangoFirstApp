@@ -1,0 +1,15 @@
+{% extends 'posts/layout.html' %}
+{% block content %}
+    <form action="add" method="post">
+        {% csrf_token %}
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title"/>
+        <br>
+        <label for="body">Text</label>
+        <input type="text" name="body" id="body"/>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <a href="/">Go Back</a>
+{% endblock %}

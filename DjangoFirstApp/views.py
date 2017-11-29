@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .models import Posts
@@ -23,3 +23,16 @@ def details(request, id):
         'post': post
     }
     return render(request, 'posts/details.html', context)
+
+
+def add(request):
+    if (request.method == 'POST'):
+        title = request.POST['title']
+        body = request.POST['body']
+
+        post = Posts(title=title, body=body)
+        post.save()
+
+        return redirect('/posts')
+    else:
+        return render(request, 'posts/add.html')
